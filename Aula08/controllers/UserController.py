@@ -30,7 +30,6 @@ def search_user():
     users = session.query(User).filter(User.nome.contains(user), User.username.contains(email)).all()
     return render_template('create_user.html', usuarios=users)
  
-
 @app.route('/user/delete/<int:id>', methods=['GET'])
 def apagar_user(id):
     user = session.query(User).filter_by(id=id).first()
@@ -45,7 +44,6 @@ def apagar_user(id):
         msg = "Erro ao apagar usuário"
         session.rollback()
     return redirect(url_for('create_user', msg=msg))
-
 
 @app.route('/user/<int:id>', methods=['GET'])
 def get_user_by_id(id):
@@ -90,7 +88,6 @@ def create_user_do():
     session.add(new_user)
     session.commit()
     return redirect(url_for('create_user'))
-
 
 @app.route('/v1/users', methods=['POST'])
 def create_r():
@@ -485,5 +482,4 @@ def update_user(id):
     except IntegrityError as e:
         return {"error": "erro no banco de dados"}, 400  
     except Exception as e:
-        return {"error": str(e)}, 400   
-
+        return {"error": str(e)}, 400
