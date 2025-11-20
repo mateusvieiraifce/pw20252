@@ -98,3 +98,26 @@ class ItemVenda(Base):
             "produto": self.produto.descricao if self.produto else None
         }   
     
+class Fornecedor(Base):
+    __tablename__ = 'fornecedores'
+    id = Column(Integer, primary_key=True)
+    cnpj = Column(String(18), nullable=False)
+    nome = Column(String(100), nullable=False)
+    endereco = Column(String(200), nullable=False)
+    telefone = Column(String(200), nullable=False)
+    email = Column(String(100), nullable=False)
+    inscricao_estadual = Column(String(200), nullable=False)
+    inscricao_municipal = Column(String(200), nullable=False)
+    cep = Column(String(10), nullable=False)
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "cnpj": self.cnpj,
+            "nome": self.nome,
+            "endereco": self.endereco,
+            "telefone": self.telefone,
+            "email": self.email,
+            "inscricao_estadual": self.inscricao_estadual,
+            "inscricao_municipal": self.inscricao_municipal,
+            "cep": self.cep
+        }
